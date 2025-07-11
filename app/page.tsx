@@ -26,7 +26,7 @@ export default function Portfolio() {
   }, [])
 
   useEffect(() => {
-    const timer = setTimeout(() => setIsLoading(false), 2500)
+    const timer = setTimeout(() => setIsLoading(false), 2000)
     return () => clearTimeout(timer)
   }, [])
 
@@ -95,12 +95,13 @@ export default function Portfolio() {
       <header className="fixed top-0 left-0 right-0 z-50">
         <div className="max-w-7xl mx-auto px-4 md:px-8 py-4 md:py-6">
           <div className="flex items-center justify-between">
-            <Button
-              variant="outline"
-              className="bg-gradient-to-r from-pink-500/20 to-purple-500/20 border-pink-400/30 text-pink-300 hover:bg-pink-400/20 hover:border-pink-400 text-xs md:text-sm px-4 md:px-6 py-2 rounded-full backdrop-blur-sm"
-            >
-              ✨ Available for work
-            </Button>
+          <Button
+  variant="outline"
+  className="bg-white/10 border-white/30 text-white hover:bg-white/20 hover:border-white text-xs md:text-sm px-4 md:px-6 py-2 rounded-full backdrop-blur-sm"
+>
+  ✨ Available for work
+</Button>
+
 
             <nav className="hidden md:flex space-x-8">
               {["About", "Skills", "Projects", "Contact"].map((item, index) => (
@@ -584,7 +585,7 @@ export default function Portfolio() {
                   year: "2025",
                   status: "🌟 Current",
                   emoji: "💼",
-                  links: { live: "", github: "" },
+                  links: { live: "https://diksha-protfolio.vercel.app/", github: "https://github.com/dikshaa2909/portfolio-website" },
                 },
               ].map((project, index) => (
                 <div
