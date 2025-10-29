@@ -1,7 +1,17 @@
-# Portfolio Improvements Tasks
+# Portfolio Enhancement TODO
 
-- [x] Remove loading animation from hero section
-- [x] Implement typewriter animation for "Hi, I'm Diksha!" text
-- [x] Add subtle animated code background to hero section
-- [x] Test website locally for smooth loading and animations
-- [x] Verify responsiveness and professional appearance
+## Completed Tasks
+- [x] Analyze current portfolio structure
+- [x] Create comprehensive enhancement plan
+- [x] Get user approval for plan
+- [x] Install react-syntax-highlighter package
+- [x] Create components/Terminal.tsx for terminal simulation
+- [x] Create components/CodeSnippet.tsx for syntax highlighting
+- [x] Update app/page.tsx to integrate terminal section
+- [x] Update skills section with code snippets
+- [x] Enhance background code animations
+- [x] Test responsiveness and performance
+- [x] Remove terminal section and add experience section instead
+
+## Pending Tasks
+- [ ] Create components/ContributionGraph.tsx (optional)

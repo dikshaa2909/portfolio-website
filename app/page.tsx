@@ -4,6 +4,9 @@ import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
 
+import CodeSnippet from "@/components/CodeSnippet"
+import Experience from "@/components/Experience"
+
 export default function Portfolio() {
   const [displayText, setDisplayText] = useState("")
   const fullText = "Hi, I'm Diksha!"
@@ -32,26 +35,28 @@ export default function Portfolio() {
         }}
       />
 
-      {/* Animated Code Background */}
+      {/* Enhanced Animated Code Background */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
         {[
-          { text: "<div>", x: "10%", y: "20%", delay: "0s" },
-          { text: "function()", x: "80%", y: "30%", delay: "1s" },
-          { text: "const", x: "20%", y: "70%", delay: "2s" },
-          { text: "</div>", x: "90%", y: "60%", delay: "3s" },
-          { text: "import", x: "5%", y: "50%", delay: "4s" },
-          { text: "export", x: "85%", y: "10%", delay: "5s" },
-          { text: "{ }", x: "50%", y: "80%", delay: "6s" },
-          { text: "=>", x: "70%", y: "40%", delay: "7s" },
+          { text: "function Portfolio() {", x: "10%", y: "20%", delay: "0s" },
+          { text: "const [state, setState] = useState();", x: "80%", y: "30%", delay: "1s" },
+          { text: "return <div>{content}</div>;", x: "20%", y: "70%", delay: "2s" },
+          { text: "export default Component;", x: "90%", y: "60%", delay: "3s" },
+          { text: "import React from 'react';", x: "5%", y: "50%", delay: "4s" },
+          { text: "useEffect(() => {}, []);", x: "85%", y: "10%", delay: "5s" },
+          { text: "const styles = { color: 'blue' };", x: "50%", y: "80%", delay: "6s" },
+          { text: "npm install react-syntax-highlighter", x: "70%", y: "40%", delay: "7s" },
+          { text: "console.log('Hello, World!');", x: "15%", y: "85%", delay: "8s" },
+          { text: "git commit -m 'portfolio updates'", x: "75%", y: "15%", delay: "9s" },
         ].map((code, index) => (
           <div
             key={index}
-            className="absolute text-blue-400/20 font-mono text-sm animate-pulse"
+            className="absolute text-blue-400/20 font-mono text-xs md:text-sm animate-pulse"
             style={{
               left: code.x,
               top: code.y,
               animationDelay: code.delay,
-              animationDuration: "4s",
+              animationDuration: "6s",
             }}
           >
             {code.text}
@@ -71,7 +76,7 @@ export default function Portfolio() {
             </Button>
 
             <nav className="hidden md:flex space-x-8">
-              {["About", "Skills", "Projects", "Contact"].map((item, index) => (
+              {["About", "Experience", "Skills", "Projects", "Contact"].map((item, index) => (
                 <a
                   key={item}
                   href={`#${item.toLowerCase()}`}
@@ -161,7 +166,6 @@ export default function Portfolio() {
                 </div>
               </div>
             </div>
-          )}
 
           {/* Scroll Indicator */}
           <div className="absolute bottom-8 md:bottom-12 left-1/2 transform -translate-x-1/2">
@@ -201,6 +205,13 @@ export default function Portfolio() {
               </div>
             </div>
           </div>
+        </section>
+
+
+
+        {/* Experience Section */}
+        <section id="experience" className="py-16 md:py-32 px-4 md:px-8">
+          <Experience />
         </section>
 
         {/* About Me Section */}
@@ -299,7 +310,7 @@ export default function Portfolio() {
               </p>
             </div>
 
-            {/* Main Skills Categories */}
+            {/* Main Skills Categories with Code Snippets */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 mb-12 md:mb-16">
               {[
                 {
@@ -312,6 +323,20 @@ export default function Portfolio() {
                     { name: "TypeScript" },
                     { name: "HTML/CSS" },
                   ],
+                  codeSnippet: {
+                    language: "jsx",
+                    code: `function Portfolio() {
+  const [active, setActive] = useState(0);
+
+  return (
+    <div className="portfolio-container">
+      <HeroSection />
+      <SkillsSection active={active} />
+    </div>
+  );
+}`,
+                    title: "React Component Example"
+                  }
                 },
                 {
                   category: "Backend & Database",
@@ -323,6 +348,25 @@ export default function Portfolio() {
                     { name: "MySQL" },
                     { name: "Redux" },
                   ],
+                  codeSnippet: {
+                    language: "javascript",
+                    code: `const express = require('express');
+const mongoose = require('mongoose');
+
+const app = express();
+
+// Connect to MongoDB
+mongoose.connect('mongodb://localhost/portfolio')
+  .then(() => console.log('DB Connected'))
+  .catch(err => console.error(err));
+
+// API Routes
+app.get('/api/projects', async (req, res) => {
+  const projects = await Project.find();
+  res.json(projects);
+});`,
+                    title: "Express.js API Example"
+                  }
                 },
               ].map((category, categoryIndex) => (
                 <div
@@ -335,7 +379,7 @@ export default function Portfolio() {
                     </h3>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-3 md:gap-4">
+                  <div className="grid grid-cols-2 gap-3 md:gap-4 mb-6 md:mb-8">
                     {category.skills.map((skill, skillIndex) => (
                       <div
                         key={skillIndex}
@@ -345,6 +389,13 @@ export default function Portfolio() {
                       </div>
                     ))}
                   </div>
+
+                  <CodeSnippet
+                    language={category.codeSnippet.language}
+                    code={category.codeSnippet.code}
+                    title={category.codeSnippet.title}
+                    className="text-xs md:text-sm"
+                  />
                 </div>
               ))}
             </div>
